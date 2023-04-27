@@ -8,6 +8,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/leaflet-control-geocoder/1.13.0/Control.Geocoder.css"
+    />
+    <script src="https://cdn.jsdelivr.net/leaflet-control-geocoder/1.13.0/Control.Geocoder.js"></script>
+
     <style>
       html,
       body,
@@ -20,6 +26,7 @@
   </head>
   <body>
     <div id="map"></div>
+    <div id="menu-container"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.3.0/turf.min.js"></script>
@@ -54,6 +61,35 @@
         }
       };
       xhr.send();
+
+      // Create a Leaflet control and add it to the map
+      var menuControl = L.control({ position: 'topright' });
+
+      // Define the content of the control
+      menuControl.onAdd = function (map) {
+        // Create a div element for the menu and add two range sliders
+        var menuDiv = L.DomUtil.create(
+          'div',
+          'leaflet-bar leaflet-control leaflet-control-custom'
+        );
+        menuDiv.innerHTML = `
+        <div class="menu-item">
+            <label for="slider1">Slider 1:</label>
+            <input type="range" min="0" max="10" value="5" class="slider" id="slider1">
+        </div>
+        <div class="menu-item">
+            <label for="slider2">Slider 2:</label>
+            <input type="range" min="0" max="10" value="5" class="slider" id="slider2">
+        </div>
+    `;
+        // Prevent clicking on the menu from propagating to the map
+        L.DomEvent.disableClickPropagation(menuDiv);
+        // Return the div element
+        return menuDiv;
+      };
+
+      // Add the control to the map
+      menuControl.addTo(map);
     </script>
   </body>
 </html>
