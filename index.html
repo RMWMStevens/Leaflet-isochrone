@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Leaflet Isochrone</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
     />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/@turf/turf@7.1.1"></script>
-	<script>
-		// Initialize Leaflet map
-		var map = L.map('mapDiv').setView([51.981775, 5.921959], 16);
-  
-		// Add Mapbox tile layer
-		L.tileLayer(
-		  'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
-		  {
-			attribution:
-			  'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			  'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-			maxZoom: 18,
-			id: 'mapbox/streets-v11',
-			tileSize: 512,
-			zoomOffset: -1,
-			accessToken: 'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA',
-		  }
-		).addTo(map);
-  
-		// Add marker for starting point
-		var marker = L.marker([51.981775, 5.921959]).addTo(map);
-  
-		// Calculate isochrone polygon using Turf.js
-		var isochrone = turf.isochrone(
-		  [marker.getLatLng().lng, marker.getLatLng().lat],
-		  15,
-		  {
-			units: 'minutes',
-			cost: function (edge) {
-			  return edge.properties.travel_time / 60; // assume travel_time is in seconds
-			},
-			reverse: true,
-		  }
-		);
-  
-		// Add isochrone polygon to map
-		L.geoJSON(isochrone).addTo(map);
-	  </script>
+    <style>
+	  html,
+	  body,
+      #map {
+        height: 100vh;
+		padding: 0;
+		margin: 0;
+      }
+    </style>
   </head>
   <body>
-    <div id="mapDiv" style="padding:0; margin:0; height: 100%; width: 100%"></div>
+    <div id="map"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script>
+      var map = L.map('map').setView([51.981775, 5.921959], 16);
+
+      L.tileLayer(
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: 'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA',
+        }
+      ).addTo(map);
+
+      var marker = L.marker([51.981775, 5.921959]).addTo(map);
+
+      var isochrone = turf.isochrone(
+        [marker.getLatLng().lng, marker.getLatLng().lat],
+        15,
+        {
+          units: 'minutes',
+          cost: function (edge) {
+            return edge.properties.travel_time / 60;
+          },
+          reverse: true,
+        }
+      );
+
+      L.geoJSON(isochrone).addTo(map);
+    </script>
   </body>
 </html>
