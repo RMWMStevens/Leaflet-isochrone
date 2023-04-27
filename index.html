@@ -24,7 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.3.0/turf.min.js"></script>
     <script>
-      var map = L.map('map').setView([43.3340944, -1.7921097], 16);
+      var map = L.map('map').setView([51.981663, 5.920573], 16);
 
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
@@ -41,7 +41,7 @@
         }
       ).addTo(map);
 
-      var marker = L.marker([43.3340944, -1.7921097]).addTo(map);
+      var marker = L.marker([51.981663, 5.920573]).addTo(map);
 
       // Load isochrone data from a JSON file
       var xhr = new XMLHttpRequest();
