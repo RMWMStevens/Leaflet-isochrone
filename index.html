@@ -9,12 +9,12 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
     />
     <style>
-	  html,
-	  body,
+      html,
+      body,
       #map {
         height: 100vh;
-		padding: 0;
-		margin: 0;
+        padding: 0;
+        margin: 0;
       }
     </style>
   </head>
@@ -22,8 +22,9 @@
     <div id="map"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.3.0/turf.min.js"></script>
     <script>
-      var map = L.map('map').setView([51.981775, 5.921959], 16);
+      var map = L.map('map').setView([43.3340944, -1.7921097], 16);
 
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
@@ -35,25 +36,24 @@
           id: 'mapbox/streets-v11',
           tileSize: 512,
           zoomOffset: -1,
-          accessToken: 'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA',
+          accessToken:
+            'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA',
         }
       ).addTo(map);
 
-      var marker = L.marker([51.981775, 5.921959]).addTo(map);
+      var marker = L.marker([43.3340944, -1.7921097]).addTo(map);
 
-      var isochrone = turf.isochrone(
-        [marker.getLatLng().lng, marker.getLatLng().lat],
-        15,
-        {
-          units: 'minutes',
-          cost: function (edge) {
-            return edge.properties.travel_time / 60;
-          },
-          reverse: true,
+      // Load isochrone data from a JSON file
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'isochrone.json');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          var data = JSON.parse(xhr.responseText);
+          L.geoJSON(data).addTo(map);
         }
-      );
-
-      L.geoJSON(isochrone).addTo(map);
+      };
+      xhr.send();
     </script>
   </body>
 </html>
