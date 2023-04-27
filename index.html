@@ -22,6 +22,10 @@
         padding: 0;
         margin: 0;
       }
+	  .menu-container {
+		background-color: #ffffff;
+		padding: 10px;
+	  }
     </style>
   </head>
   <body>
@@ -70,7 +74,7 @@
         // Create a div element for the menu and add two range sliders
         var menuDiv = L.DomUtil.create(
           'div',
-          'leaflet-bar leaflet-control leaflet-control-custom'
+          'leaflet-bar leaflet-control leaflet-control-custom menu-container'
         );
         menuDiv.innerHTML = `
         <div class="menu-item">
