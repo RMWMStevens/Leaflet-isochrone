@@ -1,0 +1,14 @@
+html,
+body,
+#map {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+.menu-container {
+  background-color: #ffffff;
+  padding: 10px;
+}
+.toggle #toggle-container {
+  display: none;
+}
