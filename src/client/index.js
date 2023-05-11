@@ -17,17 +17,25 @@ L.tileLayer(
 
 var marker = L.marker([51.981663, 5.920573]).addTo(map);
 
-// Load isochrone data from a JSON file
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'isochrone.json');
-xhr.setRequestHeader('Content-Type', 'application/json');
-xhr.onload = function () {
-  if (xhr.status === 200) {
-    var data = JSON.parse(xhr.responseText);
+// Call endpoint to retrieve isochrone
+fetch('https://localhost:7050/isochroon', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    IsochroonCode: 'Standaard',
+    KnooppuntId: '4',
+    Afstand: '300',
+  }),
+})
+  .then(response => response.json())
+  .then(data => {
     L.geoJSON(data).addTo(map);
-  }
-};
-xhr.send();
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
 
 // Create a Leaflet control and add it to the map
 var toggleControl = L.control({ position: 'topright' });

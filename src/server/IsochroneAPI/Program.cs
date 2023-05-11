@@ -3,11 +3,24 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var cors = "CorsPolicy";
+
+builder.Services.AddCors(options
+    => options.AddPolicy(cors, builder => builder
+        .WithOrigins("http://localhost:5500")
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowAnyHeader()
+    ));
+
 var app = builder.Build();
+
+app.UseCors(cors);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-app.MapGet("/isochroon", ([FromBody] IsochroneRequest request) =>
+app.MapPost("/isochroon", ([FromBody] IsochroneRequest request) =>
 {
     using (var connection = new SqlConnection(connectionString))
     {
@@ -30,13 +43,13 @@ app.MapGet("/isochroon", ([FromBody] IsochroneRequest request) =>
                 {
                     var latitude = reader["Latitude"].ToString();
                     var longitude = reader["Longitude"].ToString();
-                    coordinates.Add(new() { double.Parse(latitude), double.Parse(longitude) });
+                    coordinates.Add(new() { double.Parse(longitude), double.Parse(latitude) });
                 }
             }
 
             return geoJson;
         }
     }
-});
+}).RequireCors(cors);
 
 app.Run();
