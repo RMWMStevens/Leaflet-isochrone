@@ -20,36 +20,57 @@ app.UseCors(cors);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-app.MapPost("/isochroon", ([FromBody] IsochroneRequest request) =>
+app.MapGet("/knooppunten", () =>
 {
-    using (var connection = new SqlConnection(connectionString))
+    using var connection = new SqlConnection(connectionString);
+    connection.Open();
+
+    var query = "SELECT * FROM Knooppunt";
+
+    using var command = new SqlCommand(query, connection);
+    using SqlDataReader reader = command.ExecuteReader();
+
+    var knooppunten = new List<Knooppunt>();
+
+    while (reader.Read())
     {
-        using (var command = new SqlCommand("SELECT * FROM [dbo].[KortsteRoutePck_GetGpsVanKnooppunten](@IsochroonCode, @KnooppuntId1, @KortsteRoute)", connection))
+        knooppunten.Add(new()
         {
-            command.Parameters.AddWithValue("@IsochroonCode", request.IsochroonCode);
-            command.Parameters.AddWithValue("@KnooppuntId1", request.KnooppuntId);
-            command.Parameters.AddWithValue("@KortsteRoute", request.Afstand);
+            KnooppuntId = int.Parse(reader["KnooppuntId"].ToString()),
+            Latitude = double.Parse(reader["latitude"].ToString()),
+            Longitude = double.Parse(reader["longitude"].ToString()),
+        });
+    }
 
-            connection.Open();
+    return knooppunten;
+}).RequireCors(cors);
 
-            var geoJson = new GeoJson();
-            geoJson.Features.Add(new());
-            geoJson.Features[0].Geometry.Coordinates.Add(new());
-            var coordinates = geoJson.Features[0].Geometry.Coordinates[0];
+app.MapPost("/isochroon", ([FromBody] IsochroonRequest request) =>
+{
+    using var connection = new SqlConnection(connectionString);
+    using var command = new SqlCommand("SELECT * FROM [dbo].[KortsteRoutePck_GetGpsVanKnooppunten](@IsochroonCode, @KnooppuntId1, @KortsteRoute)", connection);
+    command.Parameters.AddWithValue("@IsochroonCode", request.IsochroonCode);
+    command.Parameters.AddWithValue("@KnooppuntId1", request.KnooppuntId);
+    command.Parameters.AddWithValue("@KortsteRoute", request.Afstand);
 
-            using (var reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    var latitude = reader["Latitude"].ToString();
-                    var longitude = reader["Longitude"].ToString();
-                    coordinates.Add(new() { double.Parse(longitude), double.Parse(latitude) });
-                }
-            }
+    connection.Open();
 
-            return geoJson;
+    var geoJson = new IsochroonResponse();
+    geoJson.Features.Add(new());
+    geoJson.Features[0].Geometry.Coordinates.Add(new());
+    var coordinates = geoJson.Features[0].Geometry.Coordinates[0];
+
+    using (var reader = command.ExecuteReader())
+    {
+        while (reader.Read())
+        {
+            var latitude = reader["Latitude"].ToString();
+            var longitude = reader["Longitude"].ToString();
+            coordinates.Add(new() { double.Parse(longitude), double.Parse(latitude) });
         }
     }
+
+    return geoJson;
 }).RequireCors(cors);
 
 app.Run();

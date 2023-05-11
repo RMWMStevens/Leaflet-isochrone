@@ -1,6 +1,6 @@
 ﻿namespace IsochroneAPI
 {
-    public class GeoJson
+    public class IsochroonResponse
     {
         public string Type { get; set; } = "FeatureCollection";
         public List<Feature> Features { get; set; } = new();

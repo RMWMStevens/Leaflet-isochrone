@@ -15,9 +15,24 @@ L.tileLayer(
   }
 ).addTo(map);
 
-var marker = L.marker([51.981663, 5.920573]).addTo(map);
+let markers = [];
 
-// Call endpoint to retrieve isochrone
+// Show 'knooppunten' from database
+fetch('https://localhost:7050/knooppunten')
+  .then(response => response.json())
+  .then(knooppunten => {
+    console.log(knooppunten);
+    knooppunten.forEach((knooppunt, i) => {
+      markers[i] = L.marker([knooppunt.latitude, knooppunt.longitude])
+        .addTo(map)
+        .bindPopup('<strong>' + knooppunt.knooppuntId + '</strong>');
+    });
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+// Call endpoint to retrieve isochrone based on 'knooppunt 4 and with an 'Afstand' of 300 meters
 fetch('https://localhost:7050/isochroon', {
   method: 'POST',
   headers: {

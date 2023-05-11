@@ -1,6 +1,6 @@
 ﻿namespace IsochroneAPI
 {
-    public class IsochroneRequest
+    public class IsochroonRequest
     {
         public string? IsochroonCode { get; set; }
 
