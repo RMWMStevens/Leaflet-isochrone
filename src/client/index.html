@@ -11,17 +11,28 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
     />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/leaflet-control-geocoder/1.13.0/Control.Geocoder.css"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+      type="text/css"
     />
   </head>
   <body>
     <div id="map"></div>
-    <div id="menu-container"></div>
-    <div id="toggle-container"></div>
 
-    <script src="https://cdn.jsdelivr.net/leaflet-control-geocoder/1.13.0/Control.Geocoder.js"></script>
+    <div id="controls-container" class="top-left">
+      <span>Profiel</span>
+      <div id="dropdown-container">
+        <select id="dropdown">
+          <!-- Dropdown options -->
+        </select>
+      </div>
+      <div id="sliders-container">
+        <!-- Sliders will be dynamically added here -->
+      </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.3.0/turf.min.js"></script>
     <script type="text/javascript" src="index.js"></script>

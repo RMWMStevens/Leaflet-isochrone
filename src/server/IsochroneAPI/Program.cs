@@ -73,4 +73,24 @@ app.MapPost("/isochroon", ([FromBody] IsochroonRequest request) =>
     return geoJson;
 }).RequireCors(cors);
 
+app.MapGet("/profielen", () =>
+{
+    using var connection = new SqlConnection(connectionString);
+    connection.Open();
+
+    var query = "SELECT IsochroonCode FROM Isochroon";
+
+    using var command = new SqlCommand(query, connection);
+    using SqlDataReader reader = command.ExecuteReader();
+
+    var profielen = new List<string>();
+
+    while (reader.Read())
+    {
+        profielen.Add(reader["IsochroonCode"].ToString());
+    }
+
+    return profielen;
+}).RequireCors(cors);
+
 app.Run();

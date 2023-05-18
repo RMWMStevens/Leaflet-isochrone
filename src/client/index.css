@@ -5,10 +5,25 @@ body,
   padding: 0;
   margin: 0;
 }
-.menu-container {
-  background-color: #ffffff;
+
+#controls-container {
+  background-color: white;
   padding: 10px;
 }
-.toggle #toggle-container {
-  display: none;
+
+#controls-container.top-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+#dropdown-container,
+#sliders-container {
+  margin-bottom: 10px; /* Add desired spacing between controls */
+}
+
+#sliders-container input[type='range'] {
+  display: block;
+  margin-bottom: 10px; /* Add desired spacing between sliders */
 }
