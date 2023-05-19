@@ -46,6 +46,10 @@ var polyline = L.polyline([startCoordinates, endCoordinates], {
 }).addTo(map);
 //#endregion Map
 
+//#region Sliders
+// Create sliders dynamically
+var slidersContainer = document.getElementById('sliders-container');
+
 //#region Dropdown
 // Get the dropdown element
 var dropdown = document.getElementById('dropdown');
@@ -71,25 +75,26 @@ fetch('https://localhost:7050/profielen')
 // Add event listener to the dropdown
 dropdown.addEventListener('change', function () {
   var selectedOption = dropdown.value;
-  // Perform actions based on the selected option
+  
+//   var currentSliders = document.getElementById('sliders-container').getElementsByClassName('wegingfactor-slider');
+
+  console.log(slidersContainer);
+
+  fetch(`https://localhost:7050/wegingfactoren/${selectedOption}`)
+    .then(response => response.json())
+    .then(wegingfactoren => {
+      wegingfactoren.forEach(wegingfactor => {
+        // Create and append the first slider
+        var slider = document.createElement('input');
+        slider.type = 'range';
+        slider.id = `slider-${wegingfactor.IsochroonCode}`;
+		slider.classList.add('wegingfactor-slider') 
+        slider.disabled = true;
+        slidersContainer.appendChild(slider);
+      });
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
 });
 //#endregion Dropdown
-
-//#region Sliders
-// Create sliders dynamically
-var slidersContainer = document.getElementById('sliders-container');
-
-// Create and append the first slider
-var slider1 = document.createElement('input');
-slider1.type = 'range';
-slider1.id = 'slider1';
-slider1.disabled = true;
-slidersContainer.appendChild(slider1);
-
-// Create and append the second slider
-var slider2 = document.createElement('input');
-slider2.type = 'range';
-slider2.id = 'slider2';
-slider2.disabled = true;
-slidersContainer.appendChild(slider2);
-//#endregion Sliders

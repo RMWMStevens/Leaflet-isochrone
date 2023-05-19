@@ -93,4 +93,31 @@ app.MapGet("/profielen", () =>
     return profielen;
 }).RequireCors(cors);
 
+app.MapGet("/wegingfactoren/{isochroonCode}", (string isochroonCode) =>
+{
+    using var connection = new SqlConnection(connectionString);
+    connection.Open();
+
+    var query = "SELECT IsochroonCode, F.FactorCode, FactorOmschrijving, Weging FROM Factor F INNER JOIN IsochroonFactor ISOF ON F.FactorCode = ISOF.FactorCode WHERE IsochroonCode = @IsochroonCode";
+
+    using var command = new SqlCommand(query, connection);
+    command.Parameters.AddWithValue("@IsochroonCode", isochroonCode);
+    using SqlDataReader reader = command.ExecuteReader();
+
+    var wegingFactoren = new List<WegingFactor>();
+
+    while (reader.Read())
+    {
+        wegingFactoren.Add(new()
+        {
+            IsochroonCode = reader["IsochroonCode"].ToString(),
+            FactorCode = reader["Factorcode"].ToString(),
+            FactorOmschrijving = reader["FactorOmschrijving"].ToString(),
+            Weging = reader["Weging"].ToString(),
+        });
+    }
+
+    return wegingFactoren;
+}).RequireCors(cors);
+
 app.Run();
