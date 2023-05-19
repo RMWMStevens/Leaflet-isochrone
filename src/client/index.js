@@ -46,15 +46,12 @@ var polyline = L.polyline([startCoordinates, endCoordinates], {
 }).addTo(map);
 //#endregion Map
 
-//#region Sliders
-// Create sliders dynamically
+//region Menu
 var slidersContainer = document.getElementById('sliders-container');
 
-//#region Dropdown
-// Get the dropdown element
 var dropdown = document.getElementById('dropdown');
 
-// Function to add options to the dropdown
+addOptionToDropdown('', '--- Maak een keus ---');
 function addOptionToDropdown(value, text) {
   var option = document.createElement('option');
   option.value = value;
@@ -69,34 +66,40 @@ fetch('https://localhost:7050/profielen')
     profielen.forEach(profiel => addOptionToDropdown(profiel, profiel));
   })
   .catch(error => {
-    console.log('Error:', error);
+    console.log('Error: ', error);
   });
 
-// Add event listener to the dropdown
+// Get DB sliders based on selected profile option
 dropdown.addEventListener('change', function () {
   var selectedOption = dropdown.value;
 
+  // Remove all existing sliders
   while (slidersContainer.firstChild) {
     slidersContainer.removeChild(slidersContainer.firstChild);
   }
 
+  // Retrieve sliders from DB
   fetch(`https://localhost:7050/wegingfactoren/${selectedOption}`)
     .then(response => response.json())
     .then(wegingfactoren => {
       wegingfactoren.forEach(wegingfactor => {
-        // Create and append the first slider
         var slider = document.createElement('input');
         slider.type = 'range';
-        slider.id = `slider-${wegingfactor.factorCode}`;
+        slider.name = `slider-${wegingfactor.factorCode}`;
         slider.min = 0;
-        slider.max = 200;
+        slider.max = 1 * 100;
         slider.value = wegingfactor.weging * 100;
         slider.disabled = true;
+        var label = document.createElement('label');
+        label.for = slider.name;
+        label.innerHTML = wegingfactor.factorOmschrijving;
+
+        slidersContainer.appendChild(label);
         slidersContainer.appendChild(slider);
       });
     })
     .catch(error => {
-      console.log('Error:', error);
+      console.log('Error: ', error);
     });
 });
-//#endregion Dropdown
+//#endregion Menu
