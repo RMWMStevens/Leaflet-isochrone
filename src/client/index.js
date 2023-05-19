@@ -76,7 +76,9 @@ fetch('https://localhost:7050/profielen')
 dropdown.addEventListener('change', function () {
   var selectedOption = dropdown.value;
   
-//   var currentSliders = document.getElementById('sliders-container').getElementsByClassName('wegingfactor-slider');
+  while(slidersContainer.firstChild) {
+	slidersContainer.removeChild(slidersContainer.firstChild);
+  }
 
   console.log(slidersContainer);
 
