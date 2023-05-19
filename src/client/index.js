@@ -75,12 +75,10 @@ fetch('https://localhost:7050/profielen')
 // Add event listener to the dropdown
 dropdown.addEventListener('change', function () {
   var selectedOption = dropdown.value;
-  
-  while(slidersContainer.firstChild) {
-	slidersContainer.removeChild(slidersContainer.firstChild);
-  }
 
-  console.log(slidersContainer);
+  while (slidersContainer.firstChild) {
+    slidersContainer.removeChild(slidersContainer.firstChild);
+  }
 
   fetch(`https://localhost:7050/wegingfactoren/${selectedOption}`)
     .then(response => response.json())
@@ -89,8 +87,10 @@ dropdown.addEventListener('change', function () {
         // Create and append the first slider
         var slider = document.createElement('input');
         slider.type = 'range';
-        slider.id = `slider-${wegingfactor.IsochroonCode}`;
-		slider.classList.add('wegingfactor-slider') 
+        slider.id = `slider-${wegingfactor.factorCode}`;
+        slider.min = 0;
+        slider.max = 200;
+        slider.value = wegingfactor.weging * 100;
         slider.disabled = true;
         slidersContainer.appendChild(slider);
       });
