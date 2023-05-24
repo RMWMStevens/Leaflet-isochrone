@@ -20,33 +20,65 @@ map.removeControl(map.zoomControl);
 L.control.zoom({ position: 'topright' }).addTo(map);
 
 let markers = [];
+let polylines = [];
 
 // Show 'knooppunten' from database
 fetch('https://localhost:7050/knooppunten')
   .then(response => response.json())
   .then(knooppunten => {
     knooppunten.forEach((knooppunt, i) => {
-      markers[i] = L.marker([knooppunt.latitude, knooppunt.longitude])
+      markers[i] = L.circleMarker([knooppunt.latitude, knooppunt.longitude])
         .addTo(map)
-        .bindPopup(
-          `<strong>#${knooppunt.knooppuntId}: ${knooppunt.latitude}, ${knooppunt.longitude}</strong>`
-        );
+        .on('click', function (e) {
+          const afstand = 150;
+          const knooppuntId = markers.findIndex(
+            m => m._leaflet_id === e.target._leaflet_id
+          );
+
+          // Remove existing polylines
+          polylines.forEach(polyline => map.removeLayer(polyline));
+
+          // Show lijnstukken from database
+          fetch('https://localhost:7050/lijnstukken', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              IsochroonCode: 'Standaard',
+              KnooppuntId: knooppuntId,
+              Afstand: afstand,
+            }),
+          })
+            .then(response => response.json())
+            .then(lijnstukken => {
+              lijnstukken.forEach((lijnstuk, i) => {
+                const startCoordinates = [
+                  lijnstuk.knooppuntId1Latitude,
+                  lijnstuk.knooppuntId1Longitude,
+                ];
+                const endCoordinates = [
+                  lijnstuk.knooppuntId2Latitude,
+                  lijnstuk.knooppuntId2Longitude,
+                ];
+                polylines[i] = L.polyline([startCoordinates, endCoordinates], {
+                  weight: 5,
+                  color: 'rgba(30, 144, 255, 0.5)',
+                }).addTo(map);
+              });
+            })
+            .catch(error => {
+              console.log('Error: ', error);
+            });
+        });
     });
   })
   .catch(error => {
     console.log('Error:', error);
   });
-
-// Add polyline as PoC
-var startCoordinates = [51.982197, 5.921658];
-var endCoordinates = [51.982351, 5.92219];
-var polyline = L.polyline([startCoordinates, endCoordinates], {
-  weight: 10,
-  color: 'rgba(30, 144, 255, 0.5)',
-}).addTo(map);
 //#endregion Map
 
-//region Menu
+//#region Menu
 var slidersContainer = document.getElementById('sliders-container');
 
 var dropdown = document.getElementById('dropdown');

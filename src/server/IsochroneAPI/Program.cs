@@ -25,7 +25,7 @@ app.MapGet("/knooppunten", () =>
     using var connection = new SqlConnection(connectionString);
     connection.Open();
 
-    var query = "SELECT * FROM Knooppunt";
+    var query = "SELECT * FROM Knooppunt ORDER BY KnooppuntId";
 
     using var command = new SqlCommand(query, connection);
     using SqlDataReader reader = command.ExecuteReader();
@@ -54,12 +54,10 @@ app.MapPost("/isochroon", ([FromBody] IsochroonRequest request) =>
     command.Parameters.AddWithValue("@KortsteRoute", request.Afstand);
 
     connection.Open();
-
-    var geoJson = new IsochroonResponse();
+    var geoJson = new GeoJson();
     geoJson.Features.Add(new());
     geoJson.Features[0].Geometry.Coordinates.Add(new());
     var coordinates = geoJson.Features[0].Geometry.Coordinates[0];
-
     using (var reader = command.ExecuteReader())
     {
         while (reader.Read())
@@ -69,8 +67,39 @@ app.MapPost("/isochroon", ([FromBody] IsochroonRequest request) =>
             coordinates.Add(new() { double.Parse(longitude), double.Parse(latitude) });
         }
     }
-
     return geoJson;
+}).RequireCors(cors);
+
+app.MapPost("/lijnstukken", ([FromBody] IsochroonRequest request) =>
+{
+    using var connection = new SqlConnection(connectionString);
+    using var command = new SqlCommand("SELECT * FROM [dbo].[KortsteRoutePck_GetLijnstukken](@IsochroonCode, @KnooppuntId1, @KortsteRoute)", connection);
+    command.Parameters.AddWithValue("@IsochroonCode", request.IsochroonCode);
+    command.Parameters.AddWithValue("@KnooppuntId1", request.KnooppuntId);
+    command.Parameters.AddWithValue("@KortsteRoute", request.Afstand);
+
+    connection.Open();
+
+    var lijnstukken = new List<Lijnstuk>();
+
+    using (var reader = command.ExecuteReader())
+    {
+        while (reader.Read())
+        {
+            lijnstukken.Add(new()
+            {
+                LijnstukId = int.Parse(reader["LijnstukId"].ToString()),
+                KnooppuntId1 = int.Parse(reader["KnooppuntId1"].ToString()),
+                KnooppuntId2 = int.Parse(reader["KnooppuntId2"].ToString()),
+                KnooppuntId1Longitude = double.Parse(reader["KnooppuntId1Longitude"].ToString()),
+                KnooppuntId1Latitude = double.Parse(reader["KnooppuntId1Latitude"].ToString()),
+                KnooppuntId2Longitude = double.Parse(reader["KnooppuntId2Longitude"].ToString()),
+                KnooppuntId2Latitude = double.Parse(reader["KnooppuntId2Latitude"].ToString()),
+            });
+        }
+    }
+
+    return lijnstukken;
 }).RequireCors(cors);
 
 app.MapGet("/profielen", () =>
