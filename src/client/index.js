@@ -1,15 +1,19 @@
-var profielen = [];
-let markers = [];
-let polylines = [];
+const profielen = [];
+const markers = [];
+const polylines = [];
 
-var slidersContainer = document.getElementById('sliders-container');
-var dropdown = document.getElementById('dropdown');
+const afstand = 150;
+
+const personaSlidersContainer = document.getElementById(
+  'persona-sliders-container'
+);
+const personaDropdown = document.getElementById('persona-dropdown');
 
 function addOptionToDropdown(value, text) {
-  var option = document.createElement('option');
+  const option = document.createElement('option');
   option.value = value;
   option.text = text;
-  dropdown.appendChild(option);
+  personaDropdown.appendChild(option);
   profielen.push(text);
 }
 
@@ -24,42 +28,28 @@ fetch('https://localhost:7050/profielen')
     console.log('Error: ', error);
   });
 
-// Get DB sliders based on selected profile option
-dropdown.addEventListener('change', () => {
-  var selectedOption = dropdown.value;
+// Get sliders values from database based on selected profile option
+personaDropdown.addEventListener('change', () => {
+  const selectedOption = personaDropdown.value;
   dropdownOnChange(selectedOption);
 });
 
 function dropdownOnChange(isochroneProfile) {
-  // Remove all existing sliders
   removeSliders();
   removePolylines();
 
-  // Retrieve sliders from DB
+  // Retrieve sliders from database
   fetch(`https://localhost:7050/wegingfactoren/${isochroneProfile}`)
     .then(response => response.json())
-    .then(wegingfactoren => {
-      wegingfactoren.forEach(wegingfactor => {
-        var slider = document.createElement('input');
-        slider.type = 'range';
-        slider.name = `slider-${wegingfactor.factorCode}`;
-        slider.min = 0;
-        slider.max = 1 * 100;
-        slider.value = wegingfactor.weging * 100;
-        slider.disabled = true;
-        var label = document.createElement('label');
-        label.for = slider.name;
-        label.innerHTML = wegingfactor.factorOmschrijving;
-
-        slidersContainer.appendChild(label);
-        slidersContainer.appendChild(slider);
-      });
-    })
+    .then(wegingfactoren =>
+      wegingfactoren.forEach(wegingfactor => addSlider(wegingfactor))
+    )
     .catch(error => {
       console.log('Error: ', error);
     });
 }
 
+//#region Map
 var map = L.map('map').setView([51.981663, 5.920573], 17);
 
 L.tileLayer(
@@ -79,6 +69,7 @@ L.tileLayer(
 
 map.removeControl(map.zoomControl);
 L.control.zoom({ position: 'topright' }).addTo(map);
+//#endregion Map
 
 // Show 'knooppunten' from database
 fetch('https://localhost:7050/knooppunten')
@@ -88,7 +79,6 @@ fetch('https://localhost:7050/knooppunten')
       markers[i] = L.circleMarker([knooppunt.latitude, knooppunt.longitude])
         .addTo(map)
         .on('click', function (e) {
-          const afstand = 150;
           const knooppuntId = markers.findIndex(
             m => m._leaflet_id === e.target._leaflet_id
           );
@@ -102,28 +92,15 @@ fetch('https://localhost:7050/knooppunten')
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              IsochroonCode: dropdown.value,
+              IsochroonCode: personaDropdown.value,
               KnooppuntId: knooppuntId,
               Afstand: afstand,
             }),
           })
             .then(response => response.json())
-            .then(lijnstukken => {
-              lijnstukken.forEach((lijnstuk, i) => {
-                const startCoordinates = [
-                  lijnstuk.knooppuntId1Latitude,
-                  lijnstuk.knooppuntId1Longitude,
-                ];
-                const endCoordinates = [
-                  lijnstuk.knooppuntId2Latitude,
-                  lijnstuk.knooppuntId2Longitude,
-                ];
-                polylines[i] = L.polyline([startCoordinates, endCoordinates], {
-                  weight: 5,
-                  color: 'rgba(30, 144, 255, 0.5)',
-                }).addTo(map);
-              });
-            })
+            .then(lijnstukken =>
+              lijnstukken.forEach((lijnstuk, i) => addPolyline(lijnstuk, i))
+            )
             .catch(error => {
               console.log('Error: ', error);
             });
@@ -134,12 +111,43 @@ fetch('https://localhost:7050/knooppunten')
     console.log('Error:', error);
   });
 
+function addSlider(wegingfactor) {
+  const slider = document.createElement('input');
+  slider.type = 'range';
+  slider.name = `slider-${wegingfactor.factorCode}`;
+  slider.min = 0;
+  slider.max = 1 * 100;
+  slider.value = wegingfactor.weging * 100;
+  slider.disabled = true;
+  const label = document.createElement('label');
+  label.for = slider.name;
+  label.innerHTML = wegingfactor.factorOmschrijving;
+
+  personaSlidersContainer.appendChild(label);
+  personaSlidersContainer.appendChild(slider);
+}
+
+function addPolyline(lijnstuk, i) {
+  const startCoordinates = [
+    lijnstuk.knooppuntId1Latitude,
+    lijnstuk.knooppuntId1Longitude,
+  ];
+  const endCoordinates = [
+    lijnstuk.knooppuntId2Latitude,
+    lijnstuk.knooppuntId2Longitude,
+  ];
+  polylines[i] = L.polyline([startCoordinates, endCoordinates], {
+    weight: 5,
+    color: 'rgba(30, 144, 255, 0.5)',
+  }).addTo(map);
+}
+
 function removePolylines() {
   polylines.forEach(polyline => map.removeLayer(polyline));
 }
 
 function removeSliders() {
-  while (slidersContainer.firstChild) {
-    slidersContainer.removeChild(slidersContainer.firstChild);
+  while (personaSlidersContainer.firstChild) {
+    personaSlidersContainer.removeChild(personaSlidersContainer.firstChild);
   }
 }

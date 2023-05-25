@@ -18,13 +18,13 @@ body,
   z-index: 1000;
 }
 
-#dropdown-container,
-#sliders-container {
+#persona-dropdown-container,
+#persona-sliders-container {
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
-#sliders-container input[type='range'] {
+#persona-sliders-container input[type='range'] {
   display: block;
   margin-bottom: 10px;
 }
