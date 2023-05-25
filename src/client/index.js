@@ -79,7 +79,7 @@ fetch('https://localhost:7050/knooppunten')
       markers[i] = L.circleMarker([knooppunt.latitude, knooppunt.longitude])
         .setStyle({ color: 'rgba(30, 144, 255, 0.8)' })
         .addTo(map)
-        .on('click', function (e) {
+        .on('click', async e => {
           const knooppuntId = markers.findIndex(
             m => m._leaflet_id === e.target._leaflet_id
           );
@@ -87,54 +87,47 @@ fetch('https://localhost:7050/knooppunten')
           removePolylines();
 
           // Show lijnstukken from database for 'Standaard' profile
-          fetch('https://localhost:7050/lijnstukken', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              IsochroonCode: 'Standaard',
-              KnooppuntId: knooppuntId,
-              Afstand: afstand,
-            }),
-          })
-            .then(response => response.json())
-            .then(lijnstukken =>
-              lijnstukken.forEach(lijnstuk =>
-                addPolyline(lijnstuk, 'rgba(170, 74, 68, 0.5)', 15)
-              )
-            )
-            .catch(error => {
-              console.log('Error: ', error);
-            });
+          await getLijnstukken(
+            'Standaard',
+            knooppuntId,
+            'rgba(170, 74, 68, 0.5)',
+            15
+          );
 
           // Show lijnstukken from database for selected profile
-          fetch('https://localhost:7050/lijnstukken', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              IsochroonCode: personaDropdown.value,
-              KnooppuntId: knooppuntId,
-              Afstand: afstand,
-            }),
-          })
-            .then(response => response.json())
-            .then(lijnstukken =>
-              lijnstukken.forEach(lijnstuk =>
-                addPolyline(lijnstuk, 'rgba(0, 255, 0, 1)', 5)
-              )
-            )
-            .catch(error => {
-              console.log('Error: ', error);
-            });
+          await getLijnstukken(
+            personaDropdown.value,
+            knooppuntId,
+            'rgba(0, 255, 0, 1)',
+            5
+          );
         });
     });
   })
   .catch(error => {
     console.log('Error:', error);
   });
+
+async function getLijnstukken(isochroonCode, knooppuntId, color, weight) {
+  await fetch('https://localhost:7050/lijnstukken', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      IsochroonCode: isochroonCode,
+      KnooppuntId: knooppuntId,
+      Afstand: afstand,
+    }),
+  })
+    .then(response => response.json())
+    .then(lijnstukken =>
+      lijnstukken.forEach(lijnstuk => addPolyline(lijnstuk, color, weight))
+    )
+    .catch(error => {
+      console.log('Error: ', error);
+    });
+}
 
 function addSlider(wegingfactor) {
   const slider = document.createElement('input');
