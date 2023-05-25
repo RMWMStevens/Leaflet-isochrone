@@ -50,7 +50,7 @@ function dropdownOnChange(isochroneProfile) {
 }
 
 //#region Map
-var map = L.map('map').setView([51.981663, 5.920573], 17);
+var map = L.map('map').setView([51.98215720073919, 5.919375797507505], 18);
 
 L.tileLayer(
   'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
