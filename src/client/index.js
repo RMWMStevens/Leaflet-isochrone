@@ -1,4 +1,65 @@
-//#region Map
+var profielen = [];
+let markers = [];
+let polylines = [];
+
+var slidersContainer = document.getElementById('sliders-container');
+var dropdown = document.getElementById('dropdown');
+
+function addOptionToDropdown(value, text) {
+  var option = document.createElement('option');
+  option.value = value;
+  option.text = text;
+  dropdown.appendChild(option);
+  profielen.push(text);
+}
+
+// Show 'profielen' from database
+fetch('https://localhost:7050/profielen')
+  .then(response => response.json())
+  .then(profielen => {
+    profielen.forEach(profiel => addOptionToDropdown(profiel, profiel));
+  })
+  .then(() => dropdownOnChange(profielen[0]))
+  .catch(error => {
+    console.log('Error: ', error);
+  });
+
+// Get DB sliders based on selected profile option
+dropdown.addEventListener('change', () => {
+  var selectedOption = dropdown.value;
+  dropdownOnChange(selectedOption);
+});
+
+function dropdownOnChange(isochroneProfile) {
+  // Remove all existing sliders
+  removeSliders();
+  removePolylines();
+
+  // Retrieve sliders from DB
+  fetch(`https://localhost:7050/wegingfactoren/${isochroneProfile}`)
+    .then(response => response.json())
+    .then(wegingfactoren => {
+      wegingfactoren.forEach(wegingfactor => {
+        var slider = document.createElement('input');
+        slider.type = 'range';
+        slider.name = `slider-${wegingfactor.factorCode}`;
+        slider.min = 0;
+        slider.max = 1 * 100;
+        slider.value = wegingfactor.weging * 100;
+        slider.disabled = true;
+        var label = document.createElement('label');
+        label.for = slider.name;
+        label.innerHTML = wegingfactor.factorOmschrijving;
+
+        slidersContainer.appendChild(label);
+        slidersContainer.appendChild(slider);
+      });
+    })
+    .catch(error => {
+      console.log('Error: ', error);
+    });
+}
+
 var map = L.map('map').setView([51.981663, 5.920573], 17);
 
 L.tileLayer(
@@ -19,9 +80,6 @@ L.tileLayer(
 map.removeControl(map.zoomControl);
 L.control.zoom({ position: 'topright' }).addTo(map);
 
-let markers = [];
-let polylines = [];
-
 // Show 'knooppunten' from database
 fetch('https://localhost:7050/knooppunten')
   .then(response => response.json())
@@ -35,8 +93,7 @@ fetch('https://localhost:7050/knooppunten')
             m => m._leaflet_id === e.target._leaflet_id
           );
 
-          // Remove existing polylines
-          polylines.forEach(polyline => map.removeLayer(polyline));
+          removePolylines();
 
           // Show lijnstukken from database
           fetch('https://localhost:7050/lijnstukken', {
@@ -45,7 +102,7 @@ fetch('https://localhost:7050/knooppunten')
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              IsochroonCode: 'Standaard',
+              IsochroonCode: dropdown.value,
               KnooppuntId: knooppuntId,
               Afstand: afstand,
             }),
@@ -76,62 +133,13 @@ fetch('https://localhost:7050/knooppunten')
   .catch(error => {
     console.log('Error:', error);
   });
-//#endregion Map
 
-//#region Menu
-var slidersContainer = document.getElementById('sliders-container');
-
-var dropdown = document.getElementById('dropdown');
-
-addOptionToDropdown('', '--- Maak een keus ---');
-function addOptionToDropdown(value, text) {
-  var option = document.createElement('option');
-  option.value = value;
-  option.text = text;
-  dropdown.appendChild(option);
+function removePolylines() {
+  polylines.forEach(polyline => map.removeLayer(polyline));
 }
 
-// Show 'profielen' from database
-fetch('https://localhost:7050/profielen')
-  .then(response => response.json())
-  .then(profielen => {
-    profielen.forEach(profiel => addOptionToDropdown(profiel, profiel));
-  })
-  .catch(error => {
-    console.log('Error: ', error);
-  });
-
-// Get DB sliders based on selected profile option
-dropdown.addEventListener('change', function () {
-  var selectedOption = dropdown.value;
-
-  // Remove all existing sliders
+function removeSliders() {
   while (slidersContainer.firstChild) {
     slidersContainer.removeChild(slidersContainer.firstChild);
   }
-
-  // Retrieve sliders from DB
-  fetch(`https://localhost:7050/wegingfactoren/${selectedOption}`)
-    .then(response => response.json())
-    .then(wegingfactoren => {
-      wegingfactoren.forEach(wegingfactor => {
-        var slider = document.createElement('input');
-        slider.type = 'range';
-        slider.name = `slider-${wegingfactor.factorCode}`;
-        slider.min = 0;
-        slider.max = 1 * 100;
-        slider.value = wegingfactor.weging * 100;
-        slider.disabled = true;
-        var label = document.createElement('label');
-        label.for = slider.name;
-        label.innerHTML = wegingfactor.factorOmschrijving;
-
-        slidersContainer.appendChild(label);
-        slidersContainer.appendChild(slider);
-      });
-    })
-    .catch(error => {
-      console.log('Error: ', error);
-    });
-});
-//#endregion Menu
+}
