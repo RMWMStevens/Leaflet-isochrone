@@ -77,6 +77,7 @@ fetch('https://localhost:7050/knooppunten')
   .then(knooppunten => {
     knooppunten.forEach((knooppunt, i) => {
       markers[i] = L.circleMarker([knooppunt.latitude, knooppunt.longitude])
+        .setStyle({ color: 'rgba(30, 144, 255, 0.8)' })
         .addTo(map)
         .on('click', function (e) {
           const knooppuntId = markers.findIndex(
@@ -85,7 +86,29 @@ fetch('https://localhost:7050/knooppunten')
 
           removePolylines();
 
-          // Show lijnstukken from database
+          // Show lijnstukken from database for 'Standaard' profile
+          fetch('https://localhost:7050/lijnstukken', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              IsochroonCode: 'Standaard',
+              KnooppuntId: knooppuntId,
+              Afstand: afstand,
+            }),
+          })
+            .then(response => response.json())
+            .then(lijnstukken =>
+              lijnstukken.forEach(lijnstuk =>
+                addPolyline(lijnstuk, 'rgba(170, 74, 68, 0.5)', 15)
+              )
+            )
+            .catch(error => {
+              console.log('Error: ', error);
+            });
+
+          // Show lijnstukken from database for selected profile
           fetch('https://localhost:7050/lijnstukken', {
             method: 'POST',
             headers: {
@@ -99,7 +122,9 @@ fetch('https://localhost:7050/knooppunten')
           })
             .then(response => response.json())
             .then(lijnstukken =>
-              lijnstukken.forEach((lijnstuk, i) => addPolyline(lijnstuk, i))
+              lijnstukken.forEach(lijnstuk =>
+                addPolyline(lijnstuk, 'rgba(0, 255, 0, 1)', 5)
+              )
             )
             .catch(error => {
               console.log('Error: ', error);
@@ -127,7 +152,7 @@ function addSlider(wegingfactor) {
   personaSlidersContainer.appendChild(slider);
 }
 
-function addPolyline(lijnstuk, i) {
+function addPolyline(lijnstuk, color, weight) {
   const startCoordinates = [
     lijnstuk.knooppuntId1Latitude,
     lijnstuk.knooppuntId1Longitude,
@@ -136,14 +161,17 @@ function addPolyline(lijnstuk, i) {
     lijnstuk.knooppuntId2Latitude,
     lijnstuk.knooppuntId2Longitude,
   ];
-  polylines[i] = L.polyline([startCoordinates, endCoordinates], {
-    weight: 5,
-    color: 'rgba(30, 144, 255, 0.5)',
-  }).addTo(map);
+  polylines.push(
+    L.polyline([startCoordinates, endCoordinates], {
+      weight: weight,
+      color: color,
+    }).addTo(map)
+  );
 }
 
 function removePolylines() {
   polylines.forEach(polyline => map.removeLayer(polyline));
+  polylines.length = 0;
 }
 
 function removeSliders() {
