@@ -92,7 +92,7 @@ fetch('https://localhost:7050/knooppunten')
           await getLijnstukken(
             'Standaard',
             knooppuntId,
-            'rgba(170, 74, 68, 0.5)',
+            'rgba(170, 74, 68, 0.6)',
             15
           );
 
@@ -100,7 +100,7 @@ fetch('https://localhost:7050/knooppunten')
           await getLijnstukken(
             personaDropdown.value,
             knooppuntId,
-            'rgba(0, 255, 0, 1)',
+            'rgba(0, 255, 0, 0.9)',
             5
           );
         });
