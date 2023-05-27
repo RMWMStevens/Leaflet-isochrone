@@ -4,6 +4,9 @@ const polylines = [];
 
 const afstand = 150;
 
+const mapboxAccessToken =
+  'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA';
+
 const personaSlidersContainer = document.getElementById(
   'persona-sliders-container'
 );
@@ -62,8 +65,7 @@ L.tileLayer(
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken:
-      'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA',
+    accessToken: mapboxAccessToken,
   }
 ).addTo(map);
 
@@ -107,6 +109,36 @@ fetch('https://localhost:7050/knooppunten')
   .catch(error => {
     console.log('Error:', error);
   });
+
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const popupLayer = L.layerGroup().addTo(map);
+
+searchButton.addEventListener('click', () => {
+  const searchText = searchInput.value;
+
+  fetch(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchText}.json?access_token=${mapboxAccessToken}`
+  )
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      if (data.features.length > 0) {
+        const [lng, lat] = data.features[0].center;
+        map.setView([lat, lng], 18);
+
+        popupLayer.clearLayers();
+        const popup = L.popup()
+          .setLatLng([lat, lng])
+          .setContent(searchText)
+          .openOn(map);
+        popupLayer.addLayer(popup);
+      } else {
+        console.log('No results found');
+      }
+    })
+    .catch(error => console.log(error));
+});
 
 async function getLijnstukken(isochroonCode, knooppuntId, color, weight) {
   await fetch('https://localhost:7050/lijnstukken', {

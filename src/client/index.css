@@ -7,20 +7,20 @@ body,
   font-family: 'arial';
 }
 
-#controls-container {
+#menu-container {
   background-color: #ffffff;
   color: #275582;
   padding: 10px;
 }
 
-#controls-container.top-left {
+#menu-container.top-left {
   position: absolute;
   top: 10px;
   left: 10px;
   z-index: 1000;
 }
 
-#controls-container h3 {
+#menu-container h3 {
   margin-top: 12px;
   margin-bottom: 12px;
 }

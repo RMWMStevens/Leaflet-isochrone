@@ -1,34 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl-nl">
   <head>
-    <title>Leaflet Isochrone</title>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>Leaflet Isochrone</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
-    />
   </head>
   <body>
     <div id="map"></div>
 
-    <div id="controls-container" class="top-left">
+    <div id="menu-container" class="top-left">
+      <div id="searchBox">
+        <input type="text" id="searchInput" placeholder="Enter a street name" />
+        <button id="searchButton">Search</button>
+      </div>
       <h3>Persona</h3>
       <div id="persona-dropdown-container">
-        <select id="persona-dropdown">
-          <!-- Dropdown options -->
-        </select>
+        <select title="Persona Dropdown" id="persona-dropdown"></select>
       </div>
       <h3>Factoren</h3>
-      <div id="persona-sliders-container">
-        <!-- Sliders will be dynamically added here -->
-      </div>
+      <div id="persona-sliders-container"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.3.0/turf.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </body>
