@@ -41,7 +41,7 @@ body,
 
 #persona-sliders-container {
   padding: 5px;
-  border: 2px solid red;
+  border: 2px solid red; /* TODO: Remove when sliders are active */
 }
 
 #persona-sliders-container input[type='range'] {
@@ -129,7 +129,7 @@ body,
   font-size: 16px;
 }
 
-#bottom-right {
+#legend-container.bottom-right {
   position: absolute;
   bottom: 15px;
   right: 15px;
@@ -137,6 +137,20 @@ body,
   padding: 0;
 }
 
+#legend-container {
+  border-top: 5px solid #c4db0d;
+  color: white;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+#legend-wrapper h3 {
+  background-color: #275582;
+  padding: 10px;
+  margin: 0;
+}
+
 #warning {
+  /* TODO: Remove when sliders are active */
   color: red;
 }
