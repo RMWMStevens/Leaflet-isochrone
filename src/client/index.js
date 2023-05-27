@@ -110,8 +110,8 @@ fetch('https://localhost:7050/knooppunten')
     console.log('Error:', error);
   });
 
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton');
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
 const popupLayer = L.layerGroup().addTo(map);
 
 searchButton.addEventListener('click', () => {
@@ -134,7 +134,7 @@ searchButton.addEventListener('click', () => {
           .openOn(map);
         popupLayer.addLayer(popup);
       } else {
-        console.log('No results found');
+        console.log(`Geen resultaten voor '${searchText}'`);
       }
     })
     .catch(error => console.log(error));
@@ -168,7 +168,7 @@ function addSlider(wegingfactor) {
   slider.min = 0;
   slider.max = 1 * 100;
   slider.value = wegingfactor.weging * 100;
-  slider.disabled = true;
+  slider.disabled = false;
   const label = document.createElement('label');
   label.for = slider.name;
   label.innerHTML = wegingfactor.factorOmschrijving;

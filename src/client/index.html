@@ -11,16 +11,28 @@
     <div id="map"></div>
 
     <div id="menu-container" class="top-left">
-      <div id="searchBox">
-        <input type="text" id="searchInput" placeholder="Enter a street name" />
-        <button id="searchButton">Search</button>
+      <div id="search-wrapper">
+        <div id="search-container">
+          <div id="search-box">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Zoek op naam of postcode"
+            />
+            <button id="search-button">&#x1F50E;&#xFE0E;</button>
+          </div>
+        </div>
       </div>
-      <h3>Persona</h3>
-      <div id="persona-dropdown-container">
-        <select title="Persona Dropdown" id="persona-dropdown"></select>
+
+      <div id="persona-container">
+        <h3>Persona</h3>
+        <div id="persona-dropdown-container">
+          <select title="Persona Dropdown" id="persona-dropdown"></select>
+        </div>
+        <h3>Factoren</h3>
+        <span id="warning">Dit element is niet functioneel</span>
+        <div id="persona-sliders-container"></div>
       </div>
-      <h3>Factoren</h3>
-      <div id="persona-sliders-container"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
