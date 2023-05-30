@@ -1751,85 +1751,57 @@
           </select>
         </div>
         <h3>Factoren</h3>
-        <span id="warning">Dit element is niet functioneel</span>
+        <!-- <span id="warning">Dit element is niet functioneel</span> -->
         <!-- TODO: Remove when sliders are active -->
         <div id="persona-sliders-container">
-          <label>Architectuur van de gebouwen.</label
-          ><input
-            type="range"
-            name="slider-Architect"
-            min="0"
-            max="100"
-          /><label>Aantal bomen.</label
-          ><input
-            type="range"
-            name="slider-BomenAant"
-            min="0"
-            max="100"
-          /><label>Leeftijd van de bomen.</label
-          ><input
-            type="range"
-            name="slider-BomenJaar"
-            min="0"
-            max="100"
-          /><label>Type bomen.</label
-          ><input
-            type="range"
-            name="slider-BomenType"
-            min="0"
-            max="100"
-          /><label>Mate van blad op de stoep.</label
-          ><input type="range" name="slider-BoomBlad" min="0" max="100" /><label
-            >Schaduw van bomen.</label
-          ><input
-            type="range"
-            name="slider-BoomSchadu"
-            min="0"
-            max="100"
-          /><label>Aantal vierkante meters groene stroken.</label
-          ><input
-            type="range"
-            name="slider-GrnStrook"
-            min="0"
-            max="100"
-          /><label>Mate van sociale voorzieningen.</label
-          ><input
-            type="range"
-            name="slider-SocialVorz"
-            min="0"
-            max="100"
-          /><label>Breedte van de stoep.</label
-          ><input
-            type="range"
-            name="slider-StoepBreed"
-            min="0"
-            max="100"
-          /><label>Kwaliteit van de stoep.</label
-          ><input
-            type="range"
-            name="slider-StoepKwali"
-            min="0"
-            max="100"
-          /><label>Loopgemakt op basis van de materie van de stoep.</label
-          ><input
-            type="range"
-            name="slider-StoepMatri"
-            min="0"
-            max="100"
-          /><label>Vrije ruimte om te lopen.</label
-          ><input
-            type="range"
-            name="slider-StoepRuim"
-            min="0"
-            max="100"
-          /><label>Aanntal struiken.</label
-          ><input
-            type="range"
-            name="slider-StruikAant"
-            min="0"
-            max="100"
-          /><label>Hoeveelheid licht in het donker.</label
-          ><input type="range" name="slider-Verlicht" min="0" max="100" />
+          <div class="factor">
+            <label class="inleiding">Architectuur van de gebouwen</label>
+            <div class="waarde">
+              <input
+                type="range"
+                name="slider-Architect"
+                min="0"
+                max="100"
+              />
+              <p class="value value1">100%</p>
+            </div>
+          </div>
+          <div class="factor">
+            <label class="inleiding">Aantal bomen</label>
+            <div class="waarde">
+              <input
+                type="range"
+                name="slider-Architect"
+                min="0"
+                max="100"
+              />
+              <p class="value value2">100%</p>
+            </div>
+          </div>
+          <div class="factor">
+            <label class="inleiding">Leeftijd van de bomen</label>
+            <div class="waarde">
+              <input
+                type="range"
+                name="slider-Architect"
+                min="0"
+                max="100"
+              />
+              <p class="value value3">100%</p>
+            </div>
+          </div>
+          <div class="factor">
+            <label class="inleiding">Type bomen</label>
+            <div class="waarde">
+              <input
+                type="range"
+                name="slider-Architect"
+                min="0"
+                max="100"
+              />
+              <p class="value value4">100%</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1837,6 +1809,7 @@
     <div id="legend-container" class="bottom-right">
       <div id="legend-wrapper">
         <h3>Legenda</h3>
+        <span id="search-button">▼</span>
       </div>
     </div>
 
