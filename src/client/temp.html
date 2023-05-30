@@ -1,0 +1,1903 @@
+<html lang="nl-nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Leaflet Isochrone</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
+  <body>
+    <div
+      id="map"
+      class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+      style="position: relative"
+      tabindex="0"
+    >
+      <div
+        class="leaflet-pane leaflet-map-pane"
+        style="transform: translate3d(-330px, -4px, 0px)"
+      >
+        <div class="leaflet-pane leaflet-tile-pane">
+          <div class="leaflet-layer" style="z-index: 1; opacity: 1">
+            <div
+              class="leaflet-tile-container leaflet-zoom-animated"
+              style="
+                z-index: 18;
+                transform: translate3d(0px, 0px, 0px) scale(1);
+              "
+            >
+              <img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67690/43305?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(676px, 327px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67691/43305?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1188px, 327px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67690/43304?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(676px, -185px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67691/43304?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1188px, -185px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67690/43306?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(676px, 839px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67691/43306?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1188px, 839px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67689/43305?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(164px, 327px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67692/43305?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1700px, 327px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67689/43304?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(164px, -185px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67692/43304?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1700px, -185px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67689/43306?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(164px, 839px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67692/43306?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1700px, 839px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67688/43305?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(-348px, 327px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67693/43305?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(2212px, 327px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67688/43304?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(-348px, -185px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67693/43304?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(2212px, -185px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67688/43306?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(-348px, 839px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67693/43306?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(2212px, 839px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67691/43307?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1188px, 1351px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67690/43307?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(676px, 1351px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67692/43307?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(1700px, 1351px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67689/43307?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(164px, 1351px, 0px);
+                  opacity: 1;
+                "
+              /><img
+                alt=""
+                role="presentation"
+                src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/17/67693/43307?access_token=pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA"
+                class="leaflet-tile leaflet-tile-loaded"
+                style="
+                  width: 512px;
+                  height: 512px;
+                  transform: translate3d(2212px, 1351px, 0px);
+                  opacity: 1;
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <div class="leaflet-pane leaflet-shadow-pane"></div>
+        <div class="leaflet-pane leaflet-overlay-pane">
+          <svg
+            pointer-events="none"
+            class="leaflet-zoom-animated"
+            width="2264"
+            height="1535"
+            style="transform: translate3d(141px, -124px, 0px)"
+            viewBox="141 -124 2264 1535"
+          >
+            <g>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1379,1289a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1324,1057a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M649,1071a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M775,1034a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1284,889a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M912,994a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M642,688a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1060,566a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2033,676a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1194,508a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1509,822a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1746,754a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1351,438a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M485,686a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M571,686a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M650,688a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M772,677a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1584,342a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1008,585a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1090,553a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1776,266a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1146,344a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1927,209a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1078,138a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1632,325a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1711,292a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2196,251a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1106,215a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1049,38a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2029,167a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1387,512a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1416,588a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1453,685a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1484,762a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1620,440a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1647,509a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1695,627a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1794,581a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1721,680a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1998,623a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1945,550a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1920,511a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1887,452a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1866,422a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1809,313a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1982,469a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2030,435a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2081,396a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2150,332a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2029,334a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1974,266a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1092,654a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1123,750a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1001,780a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M871,822a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M888,912a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1015,963a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1096,937a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1185,913a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1202,572a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1222,641a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1248,760a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1264,826a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1394,855a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1577,804a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1668,777a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1837,728a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1942,698a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1362,1210a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1343,1123a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1314,988a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1230,1096a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1150,1139a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1043,1190a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1001,1228a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M917,1202a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M844,1168a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M751,1124a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M701,1104a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1272,470a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1417,411a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1510,373a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1848,235a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2110,204a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M933,614a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M839,649a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1168,417a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1258,301a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1366,253a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1462,213a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1560,169a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1596,241a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1680,106a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1731,189a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1800,39a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1842,89a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1882,145a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1491,54a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1399,95a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1316,131a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1272,148a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1469,1235a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1568,1183a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1646,1135a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1622,1077a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1594,1015a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1549,939a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1526,876a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1717,1097a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1806,1053a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1895,1005a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M1999,970a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2055,913a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2121,856a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+              <path
+                class="leaflet-interactive"
+                stroke="rgba(30, 144, 255, 0.8)"
+                stroke-opacity="1"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgba(30, 144, 255, 0.8)"
+                fill-opacity="0.2"
+                fill-rule="evenodd"
+                d="M2075,741a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 "
+              ></path>
+            </g>
+          </svg>
+        </div>
+        <div class="leaflet-pane leaflet-marker-pane"></div>
+        <div class="leaflet-pane leaflet-tooltip-pane"></div>
+        <div class="leaflet-pane leaflet-popup-pane"></div>
+        <div
+          class="leaflet-proxy leaflet-zoom-animated"
+          style="
+            transform: translate3d(34657900px, 22172500px, 0px) scale(131072);
+          "
+        ></div>
+      </div>
+      <div class="leaflet-control-container">
+        <div class="leaflet-top leaflet-left"></div>
+        <div class="leaflet-top leaflet-right">
+          <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+            <a
+              class="leaflet-control-zoom-in leaflet-disabled"
+              href="#"
+              title="Zoom in"
+              role="button"
+              aria-label="Zoom in"
+              >+</a
+            ><a
+              class="leaflet-control-zoom-out"
+              href="#"
+              title="Zoom out"
+              role="button"
+              aria-label="Zoom out"
+              >−</a
+            >
+          </div>
+        </div>
+        <div class="leaflet-bottom leaflet-left"></div>
+        <div class="leaflet-bottom leaflet-right">
+          <div class="leaflet-control-attribution leaflet-control">
+            <a
+              href="https://leafletjs.com"
+              title="A JS library for interactive maps"
+              >Leaflet</a
+            >
+            | Map data ©
+            <a href="https://www.openstreetmap.org/">OpenStreetMap</a>
+            contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="menu-container" class="top-left">
+      <div id="search-wrapper">
+        <div id="search-container">
+          <div id="search-box">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Zoek op naam of postcode"
+            />
+            <button id="search-button">🔎︎</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="persona-container">
+        <h3>Persona</h3>
+        <div id="persona-dropdown-container">
+          <select title="Persona Dropdown" id="persona-dropdown">
+            <option value="Alle">Alle</option>
+            <option value="Comfort">Comfort</option>
+            <option value="GroenFocus">GroenFocus</option>
+            <option value="Sport">Sport</option>
+            <option value="Standaard">Standaard</option>
+            <option value="Toerist">Toerist</option>
+          </select>
+        </div>
+        <h3>Factoren</h3>
+        <span id="warning">Dit element is niet functioneel</span>
+        <!-- TODO: Remove when sliders are active -->
+        <div id="persona-sliders-container">
+          <label>Architectuur van de gebouwen.</label
+          ><input
+            type="range"
+            name="slider-Architect"
+            min="0"
+            max="100"
+          /><label>Aantal bomen.</label
+          ><input
+            type="range"
+            name="slider-BomenAant"
+            min="0"
+            max="100"
+          /><label>Leeftijd van de bomen.</label
+          ><input
+            type="range"
+            name="slider-BomenJaar"
+            min="0"
+            max="100"
+          /><label>Type bomen.</label
+          ><input
+            type="range"
+            name="slider-BomenType"
+            min="0"
+            max="100"
+          /><label>Mate van blad op de stoep.</label
+          ><input type="range" name="slider-BoomBlad" min="0" max="100" /><label
+            >Schaduw van bomen.</label
+          ><input
+            type="range"
+            name="slider-BoomSchadu"
+            min="0"
+            max="100"
+          /><label>Aantal vierkante meters groene stroken.</label
+          ><input
+            type="range"
+            name="slider-GrnStrook"
+            min="0"
+            max="100"
+          /><label>Mate van sociale voorzieningen.</label
+          ><input
+            type="range"
+            name="slider-SocialVorz"
+            min="0"
+            max="100"
+          /><label>Breedte van de stoep.</label
+          ><input
+            type="range"
+            name="slider-StoepBreed"
+            min="0"
+            max="100"
+          /><label>Kwaliteit van de stoep.</label
+          ><input
+            type="range"
+            name="slider-StoepKwali"
+            min="0"
+            max="100"
+          /><label>Loopgemakt op basis van de materie van de stoep.</label
+          ><input
+            type="range"
+            name="slider-StoepMatri"
+            min="0"
+            max="100"
+          /><label>Vrije ruimte om te lopen.</label
+          ><input
+            type="range"
+            name="slider-StoepRuim"
+            min="0"
+            max="100"
+          /><label>Aanntal struiken.</label
+          ><input
+            type="range"
+            name="slider-StruikAant"
+            min="0"
+            max="100"
+          /><label>Hoeveelheid licht in het donker.</label
+          ><input type="range" name="slider-Verlicht" min="0" max="100" />
+        </div>
+      </div>
+    </div>
+
+    <div id="legend-container" class="bottom-right">
+      <div id="legend-wrapper">
+        <h3>Legenda</h3>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.3.0/turf.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <!-- Code injected by live-server -->
+    <script>
+      // <![CDATA[  <-- For SVG support
+      if ('WebSocket' in window) {
+        (function () {
+          function refreshCSS() {
+            var sheets = [].slice.call(document.getElementsByTagName('link'));
+            var head = document.getElementsByTagName('head')[0];
+            for (var i = 0; i < sheets.length; ++i) {
+              var elem = sheets[i];
+              var parent = elem.parentElement || head;
+              parent.removeChild(elem);
+              var rel = elem.rel;
+              if (
+                (elem.href && typeof rel != 'string') ||
+                rel.length == 0 ||
+                rel.toLowerCase() == 'stylesheet'
+              ) {
+                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                elem.href =
+                  url +
+                  (url.indexOf('?') >= 0 ? '&' : '?') +
+                  '_cacheOverride=' +
+                  new Date().valueOf();
+              }
+              parent.appendChild(elem);
+            }
+          }
+          var protocol =
+            window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+          var address =
+            protocol + window.location.host + window.location.pathname + '/ws';
+          var socket = new WebSocket(address);
+          socket.onmessage = function (msg) {
+            if (msg.data == 'reload') window.location.reload();
+            else if (msg.data == 'refreshcss') refreshCSS();
+          };
+          if (
+            sessionStorage &&
+            !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')
+          ) {
+            console.log('Live reload enabled.');
+            sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+          }
+        })();
+      } else {
+        console.error(
+          'Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.'
+        );
+      }
+      // ]]>
+    </script>
+  </body>
+</html>
