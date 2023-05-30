@@ -42,7 +42,8 @@ body,
 }
 
 #search-box {
-  width: 88%;
+  display: flex;
+  padding:5px;
 }
 
 #search-input {
