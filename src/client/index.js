@@ -186,7 +186,7 @@ function addSlider(wegingfactor) {
   slider.disabled = false;
 
   const p = document.createElement('p');
-  p.classList.add('value');
+  p.classList.add('value', `value-${wegingfactor.factorCode}`);
   p.textContent = Math.round(wegingfactor.weging * 200) + '%';
 
   const label = document.createElement('label');
@@ -229,4 +229,15 @@ function removeSliders() {
   while (personaSlidersContainer.firstChild) {
     personaSlidersContainer.removeChild(personaSlidersContainer.firstChild);
   }
+}
+
+function toggleLegend() {
+  var legendRows = document.getElementsByClassName('legend-row');
+  Array.from(legendRows).forEach(legendRow => {
+    if (legendRow.style.display === 'none') {
+      legendRow.style.display = 'flex';
+    } else {
+      legendRow.style.display = 'none';
+    }
+  });
 }
