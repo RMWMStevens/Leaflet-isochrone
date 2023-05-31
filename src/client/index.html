@@ -6,6 +6,10 @@
 
     <title>Leaflet Isochrone</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <div id="map"></div>
@@ -19,7 +23,10 @@
               id="search-input"
               placeholder="Zoek op naam of postcode"
             />
-            <button id="search-button">&#x1F50E;&#xFE0E;</button>
+            <button id="search-button">
+              <i class="fa fa-search"></i>
+              <i class="fa fa-close hidden"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -30,15 +37,54 @@
           <select title="Persona Dropdown" id="persona-dropdown"></select>
         </div>
         <h3>Factoren</h3>
-        <span id="warning">Dit element is niet functioneel</span>
-        <!-- TODO: Remove when sliders are active -->
         <div id="persona-sliders-container"></div>
       </div>
     </div>
 
     <div id="legend-container" class="bottom-right">
       <div id="legend-wrapper">
-        <h3>Legenda</h3>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Looptijd</p>
+            <div class="rect row1" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Belevingstijd</p>
+            <div class="rect row2" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Groenstrook</p>
+            <div class="square row3" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Afrastering</p>
+            <div class="square row4" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Bebouwing</p>
+            <div class="square row5" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Gebouw</p>
+            <div class="square row6" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="legend-base">
+          <h3>Legenda</h3>
+          <span id="search-button">
+            <i class="fa fa-chevron-down flipped" aria-hidden="true"></i>
+          </span>
+        </div>
       </div>
     </div>
 

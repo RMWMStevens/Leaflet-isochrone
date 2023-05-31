@@ -92,7 +92,7 @@ fetch('https://localhost:7050/knooppunten')
           await getLijnstukken(
             'Standaard',
             knooppuntId,
-            'rgba(170, 74, 68, 0.6)',
+            'rgba(56, 125, 228, 0.5)',
             15
           );
 
@@ -100,7 +100,7 @@ fetch('https://localhost:7050/knooppunten')
           await getLijnstukken(
             personaDropdown.value,
             knooppuntId,
-            'rgba(0, 255, 0, 0.9)',
+            'rgba(37, 236, 11, 1)',
             5
           );
         });
@@ -162,19 +162,45 @@ async function getLijnstukken(isochroonCode, knooppuntId, color, weight) {
 }
 
 function addSlider(wegingfactor) {
+  const divFactor = document.createElement('div');
+  divFactor.classList.add('factor');
+
+  const divWaarde = document.createElement('div');
+  divWaarde.classList.add('waarde');
+
+  const span = document.createElement('span');
+  span.id = 'search-button';
+
+  const i = document.createElement('i');
+  i.classList.add('fa', 'fa-chevron-down');
+  i.setAttribute('aria-hidden', 'true');
+
+  span.appendChild(i);
+
   const slider = document.createElement('input');
   slider.type = 'range';
   slider.name = `slider-${wegingfactor.factorCode}`;
   slider.min = 0;
-  slider.max = 1 * 100;
-  slider.value = wegingfactor.weging * 100;
+  slider.max = 1 * 200;
+  slider.value = wegingfactor.weging * 200;
   slider.disabled = false;
+
+  const p = document.createElement('p');
+  p.classList.add('value');
+  p.textContent = Math.round(wegingfactor.weging * 200) + '%';
+
   const label = document.createElement('label');
+  label.classList.add('inleiding');
   label.for = slider.name;
   label.innerHTML = wegingfactor.factorOmschrijving;
 
-  personaSlidersContainer.appendChild(label);
-  personaSlidersContainer.appendChild(slider);
+  divWaarde.appendChild(span);
+  divWaarde.appendChild(slider);
+  divWaarde.appendChild(p);
+  divFactor.appendChild(label);
+  divFactor.appendChild(divWaarde);
+
+  personaSlidersContainer.appendChild(divFactor);
 }
 
 function addPolyline(lijnstuk, color, weight) {
