@@ -112,7 +112,19 @@ fetch('https://localhost:7050/knooppunten')
 
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
+const searchButtonIcon = document.getElementById('search-button-icon');
+
 const popupLayer = L.layerGroup().addTo(map);
+
+searchInput.addEventListener('input', function () {
+  if (searchInput.value) {
+    searchButtonIcon.classList.remove('fa-search');
+    searchButtonIcon.classList.add('fa-close');
+  } else {
+    searchButtonIcon.classList.remove('fa-close');
+    searchButtonIcon.classList.add('fa-search');
+  }
+});
 
 searchButton.addEventListener('click', () => {
   const searchText = searchInput.value;

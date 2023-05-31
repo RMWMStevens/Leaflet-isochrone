@@ -317,7 +317,3 @@ input[type='range']::-moz-range-track {
   border: 2px solid #275582;
   border-radius: 5px;
 }
-
-.hidden {
-  display: none !important;
-}
