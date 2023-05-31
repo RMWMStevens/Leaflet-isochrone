@@ -216,7 +216,8 @@ input[type='range']::-moz-range-track  {
 }
 
 #legend-wrapper{
-  width:130px;
+  width:150px;
+  /* width:350px; TODO: weghalen */
 }
 
 .legend-base{
@@ -254,23 +255,39 @@ input[type='range']::-moz-range-track  {
 .square{
   width:16px;
   height:16px;
-  border: 1px solid #275582;
+  border-radius:5px;
+}
+
+.rect{
+  width:24px;
+  height:8px;
   border-radius:5px;
 }
 
 .row1{
-  background-color: #b6e59e;
+  /* background-color: rgba(170, 74, 68, 0.6); TODO: Weghalen oude waarde */
+  background-color: rgba(56, 125, 228, 0.5);  /* TODO: Weghalen oude waarde */
 }
 
 .row2{
-  background-color: #f0e7bc;
+  /* background-color: rgba(0, 255, 0, 0.9); TODO: Weghalen oude waarde */
+  background-color: rgba(37, 236, 11, 1); 
+  height: 4px;
 }
 
 .row3{
-  background-color: #e6e4e0;
+  background-color: #b6e59e;
 }
 
 .row4{
+  background-color: #f0e7bc;
+}
+
+.row5{
+  background-color: #e6e4e0;
+}
+
+.row6{
   background-color: #dcd9d6;
 }
 
