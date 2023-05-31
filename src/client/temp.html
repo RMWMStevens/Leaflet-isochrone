@@ -5,6 +5,7 @@
 
     <title>Leaflet Isochrone</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <div
@@ -1733,7 +1734,10 @@
               id="search-input"
               placeholder="Zoek op naam of postcode"
             />
-            <button id="search-button">🔎︎</button>
+            <button id="search-button">
+              <i class="fa fa-search" ></i>
+              <i class="fa fa-close hidden" ></i>
+            </button>
           </div>
         </div>
       </div>
@@ -1757,6 +1761,9 @@
           <div class="factor">
             <label class="inleiding">Architectuur van de gebouwen</label>
             <div class="waarde">
+              <span id="search-button">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </span>
               <input
                 type="range"
                 name="slider-Architect"
@@ -1769,6 +1776,9 @@
           <div class="factor">
             <label class="inleiding">Aantal bomen</label>
             <div class="waarde">
+              <span id="search-button">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </span>
               <input
                 type="range"
                 name="slider-Architect"
@@ -1781,6 +1791,9 @@
           <div class="factor">
             <label class="inleiding">Leeftijd van de bomen</label>
             <div class="waarde">
+              <span id="search-button">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </span>
               <input
                 type="range"
                 name="slider-Architect"
@@ -1793,6 +1806,9 @@
           <div class="factor">
             <label class="inleiding">Type bomen</label>
             <div class="waarde">
+              <span id="search-button">
+                <i class="fa fa-chevron-down flipped" aria-hidden="true"></i>
+              </span>
               <input
                 type="range"
                 name="slider-Architect"
@@ -1802,14 +1818,88 @@
               <p class="value value4">100%</p>
             </div>
           </div>
+          <div class="subfactor">
+            <label class="inleiding">Subfactor 1</label>
+            <div class="waarde">
+              <input
+                type="range"
+                name="slider-Architect"
+                min="0"
+                max="100"
+              />
+              <p class="value value4">30²</p>
+            </div>
+          </div>
+          <div class="subfactor">
+            <label class="inleiding">Subfactor 2</label>
+            <div class="waarde">
+              <input
+                type="range"
+                name="slider-Architect"
+                min="0"
+                max="100"
+              />
+              <p class="value value4">1</p>
+            </div>
+          </div>
+          <div class="subfactor">
+            <label class="inleiding">Subfactor 3</label>
+            <div class="waarde">
+              <input
+                type="range"
+                name="slider-Architect"
+                min="0"
+                max="100"
+              />
+              <p class="value value4">200m</p>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div id="legend-container" class="bottom-left">
+      <div id="legend-wrapper"><div class="legend-base">
+        <h3>Legenda</h3>
+        <span id="search-button">
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </span>
+      </div>
       </div>
     </div>
 
     <div id="legend-container" class="bottom-right">
       <div id="legend-wrapper">
-        <h3>Legenda</h3>
-        <span id="search-button">▼</span>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Groenstrook</p>
+            <div class="square row1" aria-hidden="true"></div>            
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Afrastering</p>
+            <div class="square row2" aria-hidden="true"></div>             
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Bebouwing</p>
+            <div class="square row3" aria-hidden="true"></div>              
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-content">
+            <p>Gebouw</p>
+            <div class="square row4" aria-hidden="true"></div>             
+          </div>
+        </div>
+        <div class="legend-base">
+          <h3>Legenda</h3>
+          <span id="search-button">
+            <i class="fa fa-chevron-down flipped" aria-hidden="true"></i>
+          </span>
+        </div>
       </div>
     </div>
 
