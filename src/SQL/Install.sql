@@ -19,6 +19,8 @@ GO
 PRINT('Drop functions');
 GO
 
+DROP FUNCTION IF EXISTS [IsochroonPck_IsochroonExists];
+GO
 DROP FUNCTION IF EXISTS [IsochroonPck_GetIsochronen];
 GO
 DROP FUNCTION IF EXISTS [IsochroonFactorPck_GetFactoren];
@@ -545,6 +547,20 @@ RETURN
   );
 GO
 
+CREATE OR ALTER FUNCTION [dbo].[IsochroonPck_IsochroonExists]
+( @IsochroonCode [IsochroonCodeType] )
+RETURNS BIT AS
+BEGIN
+    IF EXISTS ( 
+                SELECT  1
+                FROM    Isochroon
+                WHERE   IsochroonCode = @IsochroonCode
+              )
+        RETURN 1;
+    RETURN 0;
+END;
+GO
+
 PRINT('CREATE procedures');
 GO
 
@@ -689,6 +705,12 @@ AS
 DECLARE @StartPunt INT;
 BEGIN
   SET NOCOUNT ON
+  IF [dbo].[IsochroonPck_IsochroonExists](@IsochroonCode) = 0
+  BEGIN
+    DECLARE @errorMessage VARCHAR(100);
+    SET @errorMessage = 'IsochroonCode "' + CAST(@IsochroonCode AS VARCHAR(10)) + '" bestaat niet.';
+    THROW 50001, @errorMessage, 1;
+  END;
 
   EXECUTE [dbo].[KortsteRoutePck_DefaultsKlaarzetten] @IsochroonCode
 
@@ -708,4 +730,4 @@ BEGIN
   CLOSE c_Knooppunten
   DEALLOCATE c_Knooppunten
 END
-GO
+GO 
