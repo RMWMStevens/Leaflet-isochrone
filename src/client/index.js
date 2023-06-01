@@ -100,7 +100,7 @@ fetch('https://localhost:7050/knooppunten')
           await getLijnstukken(
             personaDropdown.value,
             knooppuntId,
-            'rgba(37, 236, 11, 1)',
+            'rgba(37, 200, 37, 1)',
             5
           );
         });
@@ -116,15 +116,15 @@ const searchButtonIcon = document.getElementById('search-button-icon');
 
 const popupLayer = L.layerGroup().addTo(map);
 
-searchInput.addEventListener('input', function () {
-  if (searchInput.value) {
-    searchButtonIcon.classList.remove('fa-search');
-    searchButtonIcon.classList.add('fa-close');
-  } else {
-    searchButtonIcon.classList.remove('fa-close');
-    searchButtonIcon.classList.add('fa-search');
-  }
-});
+// searchInput.addEventListener('input', function () {
+//   if (searchInput.value) {
+//     searchButtonIcon.classList.remove('fa-search');
+//     searchButtonIcon.classList.add('fa-close');
+//   } else {
+//     searchButtonIcon.classList.remove('fa-close');
+//     searchButtonIcon.classList.add('fa-search');
+//   }
+// });
 
 searchButton.addEventListener('click', () => {
   const searchText = searchInput.value;

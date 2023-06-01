@@ -153,6 +153,12 @@ input[type='range']::-moz-range-track {
   background-color: #275582;
   border-radius: 5px;
 }
+
+#persona-sliders-container {
+  max-height: 72vh;
+  overflow: scroll;
+}
+
 .subfactor {
   padding-left: 25px;
 }
@@ -249,7 +255,7 @@ input[type='range']::-moz-range-track {
 }
 
 .row2 {
-  background-color: rgba(37, 236, 11, 1);
+  background-color: rgba(37, 200, 37, 1);
   height: 4px;
 }
 
