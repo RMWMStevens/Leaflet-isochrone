@@ -164,9 +164,13 @@ VALUES
   , 'Isochroon met extra nadurk op comfort.' )
 , ( 'Sport'
   , 'Isochroon met extra nadurk op sport mogelijkheden.' )
+, ( 'Sport-'
+  , 'Isochroon met extra nadurk op sport mogelijkheden maar weinig groen.' )
+, ( 'Sport+'
+  , 'Isochroon met extra nadurk op sport mogelijkheden maar veel groen.' )
 , ( 'Toerist'
   , 'Isochroon met extra nadurk op bezienswaardigheden.' )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'Isochroon met alle factoren ingewogen.' );
 GO
 
@@ -350,7 +354,9 @@ VALUES
 , ( 'Architect'
   , 'Architectuur van de gebouwen.' )
 , ( 'SocialVorz'
-  , 'Mate van sociale voorzieningen.' );
+  , 'Mate van sociale voorzieningen.' )
+, ( 'GroenPrio'
+  , 'Hoe belangrijk is groen.' );
 GO
 
 PRINT('Fill IsochroonFactor');
@@ -401,10 +407,37 @@ VALUES
   , 0.30 )
 , ( 'Sport'
   , 'StoepKwali'
-  , 0.60 )
+  , 0.15 )
 , ( 'Sport'
   , 'BoomBlad'
+  , 0.05 )
+, ( 'Sport'
+  , 'GroenPrio'
+  , 0.50 )
+, ( 'Sport-'
+  , 'StoepRuim'
+  , 0.54 )
+, ( 'Sport-'
+  , 'StoepKwali'
+  , 0.27 )
+, ( 'Sport-'
+  , 'BoomBlad'
+  , 0.09 )
+, ( 'Sport-'
+  , 'GroenPrio'
   , 0.10 )
+, ( 'Sport+'
+  , 'StoepRuim'
+  , 0.06 )
+, ( 'Sport+'
+  , 'StoepKwali'
+  , 0.03 )
+, ( 'Sport+'
+  , 'BoomBlad'
+  , 0.01 )
+, ( 'Sport+'
+  , 'GroenPrio'
+  , 0.90 )
 , ( 'Toerist'
   , 'Architect'
   , 0.45 )
@@ -420,46 +453,46 @@ VALUES
 , ( 'Toerist'
   , 'StoepBreed'
   , 0.12 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'BomenAant'
   , 0.1 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'BomenType'
   , 0.08 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'BomenJaar'
   , 0.16 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'StruikAant'
   , 0.07 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'GrnStrook'
   , 0.03 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'BoomSchadu'
   , 0.05 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'BoomBlad'
   , 0.04 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'StoepBreed'
   , 0.08 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'StoepRuim'
   , 0.08 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'StoepMatri'
   , 0.07 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'StoepKwali'
   , 0.05 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'Verlicht'
   , 0.02 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'Architect'
   , 0.1 )
-, ( 'Alle'
+, ( 'Gemiddeld'
   , 'SocialVorz'
   , 0.07 );
 GO
