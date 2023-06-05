@@ -2,10 +2,7 @@ const profielen = [];
 const markers = [];
 const polylines = [];
 
-let afstand = 150;
-
-const loopAfstandSlider = document.getElementById('loopafstand-slider');
-const loopAfstandText = document.getElementById('loopafstand-value');
+let lastClickedKnooppuntId;
 
 const mapboxAccessToken =
   'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA';
@@ -15,9 +12,16 @@ const personaSlidersContainer = document.getElementById(
 );
 const personaDropdown = document.getElementById('persona-dropdown');
 
+const loopAfstandSlider = document.getElementById('loopafstand-slider');
+const loopAfstandText = document.getElementById('loopafstand-value');
+let afstand = loopAfstandSlider.value;
+
 loopAfstandSlider.addEventListener('input', updateSliderLabelText);
-loopAfstandSlider.addEventListener('change', () => {
+loopAfstandSlider.addEventListener('change', async () => {
   updateSliderLabelText();
+  if (lastClickedKnooppuntId != undefined) {
+    await drawIsochrones();
+  }
 });
 
 function updateSliderLabelText() {
@@ -44,7 +48,7 @@ personaDropdown.addEventListener('change', () => {
 
 function dropdownOnChange(isochroneProfile) {
   removeSliders();
-  removePolylines();
+  removeIsochrones();
 
   // Retrieve sliders from database
   fetch(`https://localhost:7050/wegingfactoren/${isochroneProfile}`)
@@ -87,27 +91,11 @@ fetch('https://localhost:7050/knooppunten')
         .setStyle({ color: 'rgba(30, 144, 255, 0.8)' })
         .addTo(map)
         .on('click', async e => {
-          const knooppuntId = markers.findIndex(
+          lastClickedKnooppuntId = markers.findIndex(
             m => m._leaflet_id === e.target._leaflet_id
           );
 
-          removePolylines();
-
-          // Show lijnstukken from database for 'Standaard' profile
-          await getLijnstukken(
-            'Standaard',
-            knooppuntId,
-            'rgba(56, 125, 228, 0.5)',
-            15
-          );
-
-          // Show lijnstukken from database for selected profile
-          await getLijnstukken(
-            personaDropdown.value,
-            knooppuntId,
-            'rgba(37, 200, 37, 1)',
-            5
-          );
+          await drawIsochrones();
         });
     });
   })
@@ -128,7 +116,6 @@ searchButton.addEventListener('click', () => {
   )
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       if (data.features.length > 0) {
         const [lng, lat] = data.features[0].center;
         map.setView([lat, lng], 18);
@@ -145,6 +132,26 @@ searchButton.addEventListener('click', () => {
     })
     .catch(error => console.log(error));
 });
+
+async function drawIsochrones() {
+  removeIsochrones();
+
+  // Show lijnstukken from database for 'Standaard' profile
+  await getLijnstukken(
+    'Standaard',
+    lastClickedKnooppuntId,
+    'rgba(56, 125, 228, 0.5)',
+    15
+  );
+
+  // Show lijnstukken from database for selected profile
+  await getLijnstukken(
+    personaDropdown.value,
+    lastClickedKnooppuntId,
+    'rgba(37, 200, 37, 1)',
+    5
+  );
+}
 
 async function getLijnstukken(isochroonCode, knooppuntId, color, weight) {
   await fetch('https://localhost:7050/lijnstukken', {
@@ -233,7 +240,7 @@ function addPolyline(lijnstuk, color, weight) {
   );
 }
 
-function removePolylines() {
+function removeIsochrones() {
   polylines.forEach(polyline => map.removeLayer(polyline));
   polylines.length = 0;
 }
