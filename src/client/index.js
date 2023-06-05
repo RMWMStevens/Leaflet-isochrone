@@ -227,6 +227,17 @@ function addSlider(wegingfactor) {
   slider.value = wegingfactor.weging * 200;
   slider.disabled = false;
 
+  slider.addEventListener('input', () => {
+    const sliderValue = Math.round(slider.value);
+    p.textContent = sliderValue + '%';
+  });
+
+  slider.addEventListener('change', async () => {
+    if (lastClickedKnooppuntId != undefined) {
+      await drawIsochrones();
+    }
+  });
+
   const p = document.createElement('p');
   p.id = `label-${wegingfactor.factorCode}`;
   p.classList.add('value', `value-${wegingfactor.factorCode}`);
