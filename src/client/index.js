@@ -279,11 +279,14 @@ function removeSliders() {
 
 function toggleLegend() {
   var legendRows = document.getElementsByClassName('legend-row');
+  var legendArrow = document.getElementById('legend-arrow');
   Array.from(legendRows).forEach(legendRow => {
     if (legendRow.style.display === 'none') {
       legendRow.style.display = 'flex';
+      legendArrow.classList.remove('flipped');
     } else {
       legendRow.style.display = 'none';
+      legendArrow.classList.add('flipped');
     }
   });
 }
