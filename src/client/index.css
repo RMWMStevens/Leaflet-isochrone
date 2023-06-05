@@ -1,3 +1,10 @@
+:root {
+  --ArnhemBlue: #275582;
+  --ArnhemLightBlue: #3174af;
+  --ArnhemGreen: #c4db0d;
+  --ArnhemDark: #4f4f4f;
+}
+
 html,
 body,
 #map {
@@ -8,7 +15,7 @@ body,
   font-size: 14px;
   font-weight: 400;
   line-height: 1.6;
-  color: #4f4f4f;
+  color: var(--ArnhemDark);
 }
 
 h1,
@@ -17,7 +24,7 @@ h3,
 .inleiding {
   font-weight: 700;
   font-weight: bold;
-  color: #275582;
+  color: var(--ArnhemBlue);
 }
 
 h1 {
@@ -29,7 +36,7 @@ h2 {
 }
 
 .inleiding {
-  color: #3174af;
+  color: var(--ArnhemLightBlue);
 }
 
 p {
@@ -41,10 +48,22 @@ p {
   vertical-align: baseline;
 }
 
+.marker {
+  background-color: var(--ArnhemLightBlue);
+}
+
+.looptijd {
+  background-color: var(--ArnhemBlue);
+}
+
+.belevingstijd {
+  background-color: var(--ArnhemGreen);
+}
+
 #menu-container {
   background-color: #ffffff;
   width: 300px;
-  color: #275582;
+  color: var(--ArnhemBlue);
   padding: 10px;
   border-radius: 5px;
 }
@@ -64,15 +83,15 @@ p {
 }
 
 #search-wrapper {
-  border-bottom: 5px solid #c4db0d;
+  border-bottom: 5px solid var(--ArnhemGreen);
   width: 100%;
 }
 
 #search-container {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  border: 10px solid #275582;
-  border-top: 10px solid #275582;
+  border: 10px solid var(--ArnhemBlue);
+  border-top: 10px solid var(--ArnhemBlue);
   white-space: nowrap;
 }
 
@@ -82,7 +101,7 @@ p {
 }
 
 #search-input {
-  color: #275582;
+  color: var(--ArnhemBlue);
   width: 100%;
   font-size: 14px;
   border: none;
@@ -96,7 +115,7 @@ p {
   outline: none;
   cursor: pointer;
   font-size: 16px;
-  color: #275582;
+  color: var(--ArnhemBlue);
 }
 
 #persona-container {
@@ -109,8 +128,9 @@ p {
   text-indent: 3px;
   padding: 5px;
   width: 100%;
-  color: #275582;
+  color: var(--ArnhemBlue);
   margin-bottom: 1;
+  margin-bottom: 10px;
 }
 
 input[type='range'] {
@@ -121,7 +141,7 @@ input[type='range'] {
   width: 100%;
   height: 4px;
   border-radius: 5px;
-  background-color: #275582;
+  background-color: var(--ArnhemBlue);
   outline: none;
   margin-top: 10px;
 }
@@ -134,7 +154,7 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 50%;
   cursor: pointer;
   background-color: white;
-  border: 3px solid #275582;
+  border: 3px solid var(--ArnhemBlue);
 }
 
 input[type='range']::-moz-range-thumb {
@@ -143,14 +163,14 @@ input[type='range']::-moz-range-thumb {
   border-radius: 50%;
   background-color: white;
   cursor: pointer;
-  border: 3px solid #275582;
+  border: 3px solid var(--ArnhemBlue);
 }
 
 input[type='range']::-webkit-slider-runnable-track,
 input[type='range']::-moz-range-track {
   width: 100%;
   height: 10px;
-  background-color: #275582;
+  background-color: var(--ArnhemBlue);
   border-radius: 5px;
 }
 
@@ -165,16 +185,16 @@ input[type='range']::-moz-range-track {
 
 .subfactor .inleiding {
   font-weight: 400;
-  color: #4f4f4f;
+  color: var(--ArnhemDark);
 }
 
 .subfactor .value {
   border: 0;
-  color: #4f4f4f;
+  color: var(--ArnhemDark);
 }
 
 .subfactor input[type='range'] {
-  background-color: #4f4f4f;
+  background-color: var(--ArnhemDark);
 }
 
 .subfactor input[type='range'] {
@@ -184,7 +204,7 @@ input[type='range']::-moz-range-track {
 .subfactor input[type='range']::-webkit-slider-thumb {
   height: 12px;
   width: 12px;
-  border: 3px solid #4f4f4f;
+  border: 3px solid var(--ArnhemDark);
 }
 
 #legend-container.bottom-right {
@@ -209,8 +229,8 @@ input[type='range']::-moz-range-track {
 .legend-base {
   display: flex;
   gap: 10px;
-  border-top: 5px solid #c4db0d;
-  background-color: #275582;
+  border-top: 5px solid var(--ArnhemGreen);
+  background-color: var(--ArnhemBlue);
   padding-inline: 10px;
   align-items: center;
   justify-content: space-between;
@@ -222,7 +242,7 @@ input[type='range']::-moz-range-track {
   display: flex;
   align-items: center;
   background-color: white;
-  color: #275582;
+  color: var(--ArnhemBlue);
   height: 46px;
   border-bottom: 1px solid #dedede;
 }
@@ -251,11 +271,11 @@ input[type='range']::-moz-range-track {
 }
 
 .row1 {
-  background-color: rgba(56, 125, 228, 0.5);
+  background-color: var(--ArnhemBlue);
 }
 
 .row2 {
-  background-color: rgba(37, 200, 37, 1);
+  background-color: var(--ArnhemGreen);
   height: 4px;
 }
 
@@ -320,6 +340,6 @@ input[type='range']::-moz-range-track {
   height: 20px;
   width: 50px;
   padding: 1px 5px 2px;
-  border: 2px solid #275582;
+  border: 2px solid var(--ArnhemBlue);
   border-radius: 5px;
 }

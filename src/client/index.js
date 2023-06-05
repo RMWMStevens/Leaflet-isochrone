@@ -2,7 +2,10 @@ const profielen = [];
 const markers = [];
 const polylines = [];
 
-const afstand = 150;
+let afstand = 150;
+
+const loopAfstandSlider = document.getElementById('loopafstand-slider');
+const loopAfstandText = document.getElementById('loopafstand-value');
 
 const mapboxAccessToken =
   'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA';
@@ -12,12 +15,13 @@ const personaSlidersContainer = document.getElementById(
 );
 const personaDropdown = document.getElementById('persona-dropdown');
 
-function addOptionToDropdown(value, text) {
-  const option = document.createElement('option');
-  option.value = value;
-  option.text = text;
-  personaDropdown.appendChild(option);
-  profielen.push(text);
+loopAfstandSlider.addEventListener('input', updateSliderLabelText);
+loopAfstandSlider.addEventListener('change', () => {
+  updateSliderLabelText();
+});
+
+function updateSliderLabelText() {
+  loopAfstandText.textContent = loopAfstandSlider.value + 'm';
 }
 
 // Show 'profielen' from database
@@ -112,19 +116,8 @@ fetch('https://localhost:7050/knooppunten')
 
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
-const searchButtonIcon = document.getElementById('search-button-icon');
 
 const popupLayer = L.layerGroup().addTo(map);
-
-// searchInput.addEventListener('input', function () {
-//   if (searchInput.value) {
-//     searchButtonIcon.classList.remove('fa-search');
-//     searchButtonIcon.classList.add('fa-close');
-//   } else {
-//     searchButtonIcon.classList.remove('fa-close');
-//     searchButtonIcon.classList.add('fa-search');
-//   }
-// });
 
 searchButton.addEventListener('click', () => {
   const searchText = searchInput.value;
@@ -173,6 +166,14 @@ async function getLijnstukken(isochroonCode, knooppuntId, color, weight) {
     });
 }
 
+function addOptionToDropdown(value, text) {
+  const option = document.createElement('option');
+  option.value = value;
+  option.text = text;
+  personaDropdown.appendChild(option);
+  profielen.push(text);
+}
+
 function addSlider(wegingfactor) {
   const divFactor = document.createElement('div');
   divFactor.classList.add('factor');
@@ -181,7 +182,6 @@ function addSlider(wegingfactor) {
   divWaarde.classList.add('waarde');
 
   const span = document.createElement('span');
-  span.id = 'search-button';
 
   const i = document.createElement('i');
   i.classList.add('fa', 'fa-chevron-down');
