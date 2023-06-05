@@ -157,20 +157,10 @@ async function drawIsochrones() {
   }
 
   // Show lijnstukken from database for 'Standaard' profile
-  await getLijnstukken(
-    'Standaard',
-    lastClickedKnooppuntId,
-    'rgba(56, 125, 228, 0.5)',
-    15
-  );
+  await getLijnstukken('Standaard', lastClickedKnooppuntId, '#275582', 15);
 
   // Show lijnstukken from database for selected profile
-  await getLijnstukken(
-    selectedProfile,
-    lastClickedKnooppuntId,
-    'rgba(37, 200, 37, 1)',
-    5
-  );
+  await getLijnstukken(selectedProfile, lastClickedKnooppuntId, '#c4db0d', 5);
 }
 
 async function getLijnstukken(isochroonCode, knooppuntId, color, weight) {
