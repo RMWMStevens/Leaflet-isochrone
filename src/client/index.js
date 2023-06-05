@@ -35,6 +35,9 @@ function updateSliderLabelText() {
 fetch('https://localhost:7050/profielen')
   .then(response => response.json())
   .then(profielen => {
+    profielen = profielen.filter(
+      item => !item.includes('-') && !item.includes('+')
+    );
     profielen.forEach(profiel => addOptionToDropdown(profiel, profiel));
   })
   .then(() => dropdownOnChange(profielen[0]))
@@ -142,6 +145,17 @@ async function drawIsochrones() {
   const markerLatLng = markers[lastClickedKnooppuntId]._latlng;
   tempMarkers.push(L.marker([markerLatLng.lat, markerLatLng.lng]).addTo(map));
 
+  // Fake the 'Sport - GroenPrio' to under and above 100 for different isochrones
+  let selectedProfile = personaDropdown.value;
+  if (selectedProfile == 'Sport') {
+    const groenPrioSlider = document.getElementById('slider-GroenPrio');
+    if (groenPrioSlider.value < 80) {
+      selectedProfile += '-';
+    } else if (groenPrioSlider.value > 120) {
+      selectedProfile += '+';
+    }
+  }
+
   // Show lijnstukken from database for 'Standaard' profile
   await getLijnstukken(
     'Standaard',
@@ -152,7 +166,7 @@ async function drawIsochrones() {
 
   // Show lijnstukken from database for selected profile
   await getLijnstukken(
-    personaDropdown.value,
+    selectedProfile,
     lastClickedKnooppuntId,
     'rgba(37, 200, 37, 1)',
     5
@@ -206,12 +220,15 @@ function addSlider(wegingfactor) {
   const slider = document.createElement('input');
   slider.type = 'range';
   slider.name = `slider-${wegingfactor.factorCode}`;
+  slider.id = slider.name;
   slider.min = 0;
   slider.max = 1 * 200;
+  slider.step = 2;
   slider.value = wegingfactor.weging * 200;
   slider.disabled = false;
 
   const p = document.createElement('p');
+  p.id = `label-${wegingfactor.factorCode}`;
   p.classList.add('value', `value-${wegingfactor.factorCode}`);
   p.textContent = Math.round(wegingfactor.weging * 200) + '%';
 
