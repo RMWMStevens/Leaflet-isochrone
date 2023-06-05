@@ -1,6 +1,7 @@
 const profielen = [];
 const markers = [];
 const polylines = [];
+const tempMarkers = [];
 
 let lastClickedKnooppuntId;
 
@@ -14,6 +15,7 @@ const personaDropdown = document.getElementById('persona-dropdown');
 
 const loopAfstandSlider = document.getElementById('loopafstand-slider');
 const loopAfstandText = document.getElementById('loopafstand-value');
+
 let afstand = loopAfstandSlider.value;
 
 loopAfstandSlider.addEventListener('input', updateSliderLabelText);
@@ -136,6 +138,10 @@ searchButton.addEventListener('click', () => {
 async function drawIsochrones() {
   removeIsochrones();
 
+  // Show marker on selected knooppunt
+  const markerLatLng = markers[lastClickedKnooppuntId]._latlng;
+  tempMarkers.push(L.marker([markerLatLng.lat, markerLatLng.lng]).addTo(map));
+
   // Show lijnstukken from database for 'Standaard' profile
   await getLijnstukken(
     'Standaard',
@@ -243,6 +249,8 @@ function addPolyline(lijnstuk, color, weight) {
 function removeIsochrones() {
   polylines.forEach(polyline => map.removeLayer(polyline));
   polylines.length = 0;
+  tempMarkers.forEach(marker => map.removeLayer(marker));
+  tempMarkers.length = 0;
 }
 
 function removeSliders() {
