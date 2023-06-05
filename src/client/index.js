@@ -21,7 +21,8 @@ loopAfstandSlider.addEventListener('change', () => {
 });
 
 function updateSliderLabelText() {
-  loopAfstandText.textContent = loopAfstandSlider.value + 'm';
+  afstand = loopAfstandSlider.value;
+  loopAfstandText.textContent = afstand + 'm';
 }
 
 // Show 'profielen' from database
