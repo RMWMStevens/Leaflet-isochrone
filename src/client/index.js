@@ -5,8 +5,7 @@ const tempMarkers = [];
 
 let lastClickedKnooppuntId;
 
-const mapboxAccessToken =
-  'pk.eyJ1IjoiZ2xhZGFsdWNpbyIsImEiOiJjbGd5eHo5dHAwZTgyM3RwY2FyZ2xhano4In0.oYdMELbFEh2K4QLi9XPTsA';
+const mapboxAccessToken = '';
 
 const personaSlidersContainer = document.getElementById(
   'persona-sliders-container'
